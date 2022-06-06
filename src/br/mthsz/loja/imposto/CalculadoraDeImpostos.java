@@ -6,18 +6,10 @@ import java.math.BigDecimal;
 
 public class CalculadoraDeImpostos {
 
-    public BigDecimal calcular(Orcamento orcamento, TipoImposto tipoImposto ){
-
-        switch (tipoImposto){
-            case ICMS:
-                return orcamento.getValor().multiply(new BigDecimal("0.1"));
-
-            case ISS:
-                return orcamento.getValor().multiply(new BigDecimal("0.06"));
-
-            default:
-                return BigDecimal.ZERO;
-        }
-
+    //Classe não cresce infinitamente
+    //Não será necessario expandir a classe se for neecessario calcular outro imposto
+    //mais facil de manter e entender o ocódigo
+    public BigDecimal calcular(Orcamento orcamento, Imposto imposto ){
+        return imposto.calcular(orcamento);
     }
 }
